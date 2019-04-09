@@ -3,7 +3,7 @@ class CreateFridges < ActiveRecord::Migration[5.2]
     create_table :fridges do |t|
       t.string :brand
       t.date :last_technical_check
-      t.references :user, foreign_key: true
+      t.string :food, array: true, null: false
 
       t.timestamps
     end
