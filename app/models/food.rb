@@ -1,6 +1,6 @@
 class Food < ApplicationRecord
   validates :brand, inclusion: { in: %w(cheap expensive ) }
-
+  #dunno if there should be a "belongs_to :fridge" here
 end
 
 class Milk < Food

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   #- email
   #- date of birth
   #- pet animals (0-3 - random): counter_cache
-
+  has_one :pet
+  has_one :fridge
 
 end
