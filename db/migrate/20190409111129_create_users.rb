@@ -5,8 +5,8 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :last_name, null: false
       t.string :email
       t.date :birth_date, null: false
-      t.integer :pet
-      t.string :fridge
+      t.integer :pet_type
+      t.string :fridge_type
 
       t.timestamps
     end

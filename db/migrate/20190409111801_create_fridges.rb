@@ -5,6 +5,8 @@ class CreateFridges < ActiveRecord::Migration[5.2]
       t.date :last_technical_check
       t.string :food, array: true, null: false
 
+      t.references :user, foreign_key: true
+
       t.timestamps
     end
   end
