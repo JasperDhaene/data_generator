@@ -1,14 +1,15 @@
 class Food < ApplicationRecord
   validates :brand, inclusion: { in: %w(cheap expensive ) }
-  #dunno if there should be a "belongs_to :fridge" here
+  # dunno if there should be a "belongs_to :fridge" here
+  # BUG: brand can still be set for grass, where presence is set to false
 end
 
 class Milk < Food
-  validates :volume, presence: true, inclusion: { in: [0.5, 1] }
+  validates :volume, presence: true, inclusion: { in: 0.5..1 }
 end
 
 class Water < Food
-  validates :brand, expiration_date, presence: false
+  validates :brand, :expiration_date, presence: false
 end
 
 class Bread < Food
@@ -24,7 +25,8 @@ class Carrot < Food
 end
 
 class Grass < Food
-  validates :brand, expiration_date, presence: false
+  validates :brand, presence: false
+  validates :expiration_date, presence: false
 end
 
 =begin

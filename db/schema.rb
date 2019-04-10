@@ -19,15 +19,16 @@ ActiveRecord::Schema.define(version: 2019_04_09_111801) do
     t.float "volume"
     t.string "size"
     t.string "color"
-    t.integer "pet_id"
+    t.integer "fridge_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pet_id"], name: "index_foods_on_pet_id"
+    t.index ["fridge_id"], name: "index_foods_on_fridge_id"
   end
 
   create_table "fridges", force: :cascade do |t|
     t.string "brand"
     t.date "last_technical_check"
+    t.string "food", null: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,9 +52,11 @@ ActiveRecord::Schema.define(version: 2019_04_09_111801) do
     t.string "last_name", null: false
     t.string "email"
     t.date "birth_date", null: false
-    t.integer "pet"
+    t.integer "amount_of_pets"
+    t.integer "fridge_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["fridge_id"], name: "index_users_on_fridge_id"
   end
 
 end
