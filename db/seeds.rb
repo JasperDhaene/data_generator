@@ -9,9 +9,10 @@ require 'faker'
 
 puts '-' * 50
 puts 'Running data generator'
+puts 'Please hold...'
 puts '-' * 50
 
-5.times do
+500.times do
   rg = Random.new
   pets = %w[Dog Cat Mouse Horse]
   foods = %w[Milk Water Bread Meat Carrot Grass]
@@ -43,7 +44,7 @@ puts '-' * 50
     pet = Pet.new(
       name: Faker::Creature::Dog.name,
       type: pets[rg.rand(pets.length)],
-      age_in_months: rg.rand(180),
+      age_in_months: rg.rand(1..180),
       user: user
     )
 
@@ -87,3 +88,7 @@ puts '-' * 50
     user.update!(fridge_id: fridge.id)
   end
 end
+
+puts '-' * 50
+puts 'OK DONE'
+puts '-' * 50
