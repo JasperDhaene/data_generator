@@ -14,8 +14,11 @@ puts '-' * 50
 5.times do
   rg = Random.new
   pets = %w[Dog Cat Mouse Horse]
-  foods = %w[milk water bread meat carrot grass]
+  foods = %w[Milk Water Bread Meat Carrot Grass]
   fridges = %w[AEG Siemens Whirlpool]
+  size = %w[small big]
+  color = %w[orange purple white]
+  brand = %w[cheap expensive]
 
   dietary_restrictions = {
     'Cat' => %w[milk water bread],
@@ -24,7 +27,7 @@ puts '-' * 50
     'Horse' => %w[carrot grass water]
   }
 
-  amount_of_pets = rg.rand(4)
+  amount_of_pets = rg.rand(pets.length)
 
   # Generate user
   user = User.create!(
@@ -47,19 +50,40 @@ puts '-' * 50
     food_for_pet = dietary_restrictions[pet.type]
     pet.update(favorite_food: food_for_pet[rg.rand(food_for_pet.length)])
     pet.save!
-
   end
 
   if user.birth_date < 18.years.ago # FFS this language is ridiculous...
     # Give that user a fridge cuz they're a god damn ADULT and that's what adults have!
 
     # between 1-10 foods in there
-    fridge = Fridge.new(brand: fridges[rg.rand(fridges.length)], user: user)
+    fridge = Fridge.new(
+      brand: fridges[rg.rand(fridges.length)],
+      # let's just assume nobody has a fridge that's more than 30 years old
+      last_technical_check: Faker::Date.between(30.years.ago, Date.today),
+      user: user
+    )
     fridge.save!
 
-    #alright, weird how 'fridge: fridge' didn't work here, but usually works with 'user: user' like on line 57
+    # put some food in that fridge cuz why would you have one if it's empty?!
+    rg.rand(1..10).times do
+      food = Food.new(
+        brand: brand[rg.rand(brand.length)],
+        type: foods[rg.rand(foods.length)],
+        expiration_date: Faker::Date.forward(3),
+        fridge: fridge
+      )
+      case food.type
+      when 'milk'
+        food.update(volume: rg.rand(0.5..1))
+      when 'bread'
+        food.update(size: size[rg.rand(size.length)])
+      when 'carrot'
+        food.update(color: color[rg.rand(color.length)])
+      end
+      food.save
+    end
+
+    # alright, weird how 'fridge: fridge' didn't work here, but usually works with 'user: user' like on line 57
     user.update!(fridge_id: fridge.id)
   end
-
-
 end
