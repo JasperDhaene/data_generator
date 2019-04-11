@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Stuff that's done
 
-Things you may want to cover:
+* Models
+* Migrations
+* Data generator
 
-* Ruby version
+## Stuff that still needs to be done
 
-* System dependencies
+* All CRUD views and actions
 
-* Configuration
+## How to setup
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Execute `run.sh` in the root folder or do `rails db:migrate && rails db:seed`
