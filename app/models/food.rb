@@ -1,7 +1,8 @@
 class Food < ApplicationRecord
   validates :brand, inclusion: { in: %w(cheap expensive ) }
-  # dunno if there should be a "belongs_to :fridge" here
   # BUG: brand can still be set for grass, where presence is set to false
+  
+  belongs_to :fridge
 end
 
 class Milk < Food

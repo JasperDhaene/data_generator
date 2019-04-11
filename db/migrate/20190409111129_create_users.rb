@@ -9,7 +9,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
 
       t.references :fridge, foreign_key: true
 
-
       t.timestamps
     end
   end

@@ -3,7 +3,10 @@ class CreateFridges < ActiveRecord::Migration[5.2]
     create_table :fridges do |t|
       t.string :brand
       t.date :last_technical_check
-      t.string :food, array: true, null: false
+
+      # initially set a 'null: false' here, but dunno how that interacts with 'belongs_to' and 'has_many' relationships
+      # and sqlite3 doesn't have arrays, so that's another thing i'm not sure about
+      t.string :food, array: true
 
       t.references :user, foreign_key: true
 

@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_04_09_111801) do
   create_table "fridges", force: :cascade do |t|
     t.string "brand"
     t.date "last_technical_check"
-    t.string "food", null: false
+    t.string "food"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
