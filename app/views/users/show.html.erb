@@ -20,4 +20,32 @@
   <%= @user.birth_date %>
 </p>
 
+<h2>Pets</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Age</th>
+    <th>Deceased</th>
+    <th>Favorite foods</th>
+  </tr>
+
+  <% @user.pets.each do |pet| %>
+    <tr>
+      <td><%= pet.name %></td>
+      <td><%= pet.type %></td>
+      <% age_in_parts = ActiveSupport::Duration.build(pet.age_in_months.months.to_i).parts %>
+      <td><%= "#{age_in_parts[:years]} years, #{age_in_parts[:months]} months"  %></td>
+      <td><%= pet.date_of_death %></td>
+      <td><%= pet.favorite_food %></td>
+      <td><%= link_to 'Edit', edit_user_pet_path(pet) %></td>
+      <td><%= link_to 'Destroy', user_pet_path(pet),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+
 <%= link_to 'Back', users_path %>
