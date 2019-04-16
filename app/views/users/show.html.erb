@@ -28,7 +28,7 @@
     <th>Type</th>
     <th>Age</th>
     <th>Deceased</th>
-    <th>Favorite foods</th>
+    <th>Favorite food</th>
   </tr>
 
   <% @user.pets.each do |pet| %>
@@ -39,13 +39,30 @@
       <td><%= "#{age_in_parts[:years]} years, #{age_in_parts[:months]} months"  %></td>
       <td><%= pet.date_of_death %></td>
       <td><%= pet.favorite_food %></td>
-      <td><%= link_to 'Edit', edit_user_pet_path(pet) %></td>
-      <td><%= link_to 'Destroy', user_pet_path(pet),
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>
 
+<h2>Fridge</h2>
+<% if @user.fridge %>
+  <table>
+    <tr>
+      <th>Brand</th>
+      <th>Last technical check</th>
+    </tr>
+
+    <tr>
+      <td><%= @user.fridge.brand %></td>
+      <td><%= @user.fridge.last_technical_check %></td>
+      <td><%= link_to 'Edit', edit_user_fridge_path(@user.fridge) %></td>
+      <td><%= link_to 'Destroy', user_fridge_path(@user.fridge),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+
+  </table>
+  <% else %>
+    <p>This user is not old enough to have a fridge!</p>
+<% end %>
 
 <%= link_to 'Back', users_path %>

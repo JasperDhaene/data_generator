@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :pets
+    resources :fridges
   end
 
   root 'users#index'
