@@ -12,7 +12,7 @@ puts 'Running data generator'
 puts 'Please hold...'
 puts '-' * 50
 
-500.times do
+5.times do
   rg = Random.new
   pets = %w[Dog Cat Mouse Horse]
   foods = %w[Milk Water Bread Meat Carrot Grass]
