@@ -3,10 +3,9 @@ class CreateUsers < ActiveRecord::Migration[5.2]
     create_table :users do |t|
       t.string :first_name, null: false
       t.string :last_name, null: false
-      t.string :email
+      t.string :email, null: false
       t.date :birth_date, null: false
-      t.integer :amount_of_pets
-
+      t.integer :pets_count
       t.references :fridge, foreign_key: true
 
       t.timestamps

@@ -2,7 +2,8 @@
 
 class Pet < ApplicationRecord
   validates :age_in_months, presence: true, inclusion: { in: 1..180 }
-  belongs_to :user
+  belongs_to :user, counter_cache: true
+
 end
 
 class Cat < Pet

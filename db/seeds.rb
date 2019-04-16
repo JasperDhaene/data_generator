@@ -36,12 +36,11 @@ puts '-' * 50
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
     birth_date: Faker::Date.birthday(15, 65),
-    amount_of_pets: amount_of_pets
   )
 
   # Generate one or multiple pets for a user
   amount_of_pets.times do
-    pet = Pet.new(
+    pet = user.pets.create(
       name: Faker::Creature::Dog.name,
       type: pets[rg.rand(pets.length)],
       age_in_months: rg.rand(1..180),
@@ -49,15 +48,13 @@ puts '-' * 50
     )
 
     food_for_pet = dietary_restrictions[pet.type]
-    pet.update(favorite_food: food_for_pet[rg.rand(food_for_pet.length)])
+    pet.favorite_food = food_for_pet[rg.rand(food_for_pet.length)]
     pet.save!
   end
 
-  if user.birth_date < 18.years.ago # FFS this language is ridiculous...
-    # Give that user a fridge cuz they're a god damn ADULT and that's what adults have!
-
+  if user.birth_date < 18.years.ago
     # between 1-10 foods in there
-    fridge = Fridge.new(
+    fridge = Fridge.create(
       brand: fridges[rg.rand(fridges.length)],
       # let's just assume nobody has a fridge that's more than 30 years old
       last_technical_check: Faker::Date.between(30.years.ago, Date.today),
@@ -75,17 +72,15 @@ puts '-' * 50
       )
       case food.type
       when 'milk'
-        food.update(volume: rg.rand(0.5..1))
+        food.volume = rg.rand(0.5..1)
       when 'bread'
-        food.update(size: size[rg.rand(size.length)])
+        food.size = size[rg.rand(size.length)]
       when 'carrot'
-        food.update(color: color[rg.rand(color.length)])
+        food.color = color[rg.rand(color.length)]
       end
       food.save
     end
 
-    # alright, weird how 'fridge: fridge' didn't work here, but usually works with 'user: user' like on line 57
-    user.update!(fridge_id: fridge.id)
   end
 end
 

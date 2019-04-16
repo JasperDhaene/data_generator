@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 2019_04_09_111801) do
   create_table "fridges", force: :cascade do |t|
     t.string "brand"
     t.date "last_technical_check"
-    t.string "food"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,9 +49,9 @@ ActiveRecord::Schema.define(version: 2019_04_09_111801) do
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
-    t.string "email"
+    t.string "email", null: false
     t.date "birth_date", null: false
-    t.integer "amount_of_pets"
+    t.integer "pets_count"
     t.integer "fridge_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
