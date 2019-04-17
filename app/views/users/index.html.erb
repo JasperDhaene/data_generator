@@ -1,6 +1,12 @@
 <h1>Listing users</h1>
 
 <%= link_to 'Create new user', new_user_path %>
+
+<%= form_tag users_path, method: 'get'  do %>
+  Search user <%= text_field_tag :name %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+
 <table>
   <tr>
     <th>First name</th>
@@ -25,3 +31,5 @@
     </tr>
   <% end %>
 </table>
+
+<%= link_to 'List all users', users_path %>
