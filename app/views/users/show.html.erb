@@ -44,7 +44,9 @@
 </table>
 
 <h2>Fridge</h2>
-<% if @user.fridge %>
+<% if @user.birth_date > (Date.today - 18.years) %>
+  <p>This user is not old enough to have a fridge!</p>
+<% else if @user.fridge %>
   <table>
     <tr>
       <th>Brand</th>
@@ -59,7 +61,9 @@
 
   </table>
   <% else %>
-    <p>This user is not old enough to have a fridge!</p>
+    <p>Create a new fridge (functionality coming soonTM)</p>
+    <%= link_to 'Create new fridge', new_user_fridge_path(@user.id) %>
+  <% end %>
 <% end %>
 
 <%= link_to 'Back', users_path %>

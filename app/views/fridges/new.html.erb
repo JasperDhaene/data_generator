@@ -1,0 +1,19 @@
+<h1>Create new fridge</h1>
+
+<%= form_for [@user, @fridge], local: true do |form| %>
+
+  <p>
+    <%= form.label :brand %><br>
+    <%= form.select :brand, %w(Siemens Whirlpool AEG) %>
+  </p>
+
+  <p>
+    <%= form.label :last_technical_check %><br>
+    <%= form.date_field :last_technical_check %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
