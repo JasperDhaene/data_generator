@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     resources :pets, only: %i[new create]
   end
   resources :fridges, only: %i[show edit update destroy] do
+    member do
+      put 'remove_food'
+    end
     resources :foods, only: %i[new create]
   end
   resources :foods, only: %i[show edit update destroy]

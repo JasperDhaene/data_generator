@@ -11,11 +11,29 @@
 </p>
 
 <h2>Food in the fridge:</h2>
-<% if @fridge.foods %>
+<% if !@fridge.foods.empty? %>
   <ul>
     <% @fridge.foods.each do |food| %>
       <li><%= food.type %></li>
     <% end %>
   </ul>
+<% else %>
+  <p>Unfortunately, the fridge is empty!</p>
 <% end %>
+
+<%= form_tag fridge_path(@fridge), method: :put %>
+
+<h2>
+  Add food to the fridge:
+</h2>
+<p>
+
+  <%= label(:fridge, :food)  %><br>
+
+  <%= select_tag(:food, options_for_select(%w(Milk Water Bread Meat Carrot Grass))) %>
+</p>
+
+<p>
+  <%= submit_tag %>
+</p>
 <%= link_to 'Back', user_path(@user) %>

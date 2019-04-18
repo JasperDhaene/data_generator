@@ -1,3 +1,5 @@
+require 'faker'
+
 class FridgesController < ApplicationController
   def show
     @fridge = Fridge.find(params[:id])
@@ -23,7 +25,7 @@ class FridgesController < ApplicationController
     @fridge = Fridge.new
   end
 
-  def update
+  def remove_food
   # probably "not done" to delete this in a different models controller, but i don't know any better
   # TODO: doesn't check dietary restrictions of an animal
     @food = Food.find(params[:food])
@@ -33,6 +35,38 @@ class FridgesController < ApplicationController
     else
       #don't do error handling yet
     end
+  end
+
+  def update
+    @fridge = Fridge.find(params[:id])
+    brand = %w[cheap expensive]
+    size = %w[small big]
+    color = %w[orange purple white]
+
+    rg = Random.new
+
+    food = Food.new(
+      brand: brand[rg.rand(brand.length)],
+      type: params[:food],
+      expiration_date: Faker::Date.forward(3),
+      fridge: @fridge
+    )
+
+    case food.type
+    when 'Milk'
+      food.volume = rg.rand(0.5..1)
+    when 'Bread'
+      food.size = size[rg.rand(size.length)]
+    when 'Carrot'
+      food.color = color[rg.rand(color.length)]
+    end
+
+    if food.save
+      redirect_to @fridge
+    else
+      byebug
+    end
+
   end
 
   private
