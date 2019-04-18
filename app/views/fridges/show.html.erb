@@ -10,4 +10,12 @@
   <%= @fridge.last_technical_check %>
 </p>
 
+<h2>Food in the fridge:</h2>
+<% if @fridge.foods %>
+  <ul>
+    <% @fridge.foods.each do |food| %>
+      <li><%= food.type %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= link_to 'Back', user_path(@user) %>

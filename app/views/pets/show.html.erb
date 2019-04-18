@@ -31,4 +31,21 @@
   <%= @pet.favorite_food %>
 </p>
 
+<h2>Food:</h2>
+
+<%= form_tag fridge_path(@pet.user.fridge), method: :put %>
+
+  <h2>
+    <%= @pet.name %> ate:
+  </h2>
+  <p>
+
+    <%= label(:fridge, :food)  %><br>
+    <%= select_tag(:food, options_from_collection_for_select(@pet.user.fridge.foods, :id, :type)) %>
+  </p>
+
+  <p>
+    <%= submit_tag %>
+  </p>
+
 <%= link_to 'Back to user', user_path(@pet.user) %>

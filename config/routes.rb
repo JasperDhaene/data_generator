@@ -1,18 +1,14 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-=begin
-  resources :users do
-    resources :pets
-    resources :fridges
-  end
-=end
 
   resources :users do
-    resources :fridges
+    resources :fridges, only: %i[new create]
   end
+  resources :fridges, only: %i[show edit update destroy] do
+    resources :foods, only: %i[new create]
+  end
+  resources :foods, only: %i[show edit update destroy]
   resources :pets
-
-
 
   root 'users#index'
 end
