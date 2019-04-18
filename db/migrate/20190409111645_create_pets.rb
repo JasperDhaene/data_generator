@@ -12,16 +12,3 @@ class CreatePets < ActiveRecord::Migration[5.2]
     end
   end
 end
-
-=begin
-- Pet animals types:
-    - Cat
-    - Dog
-    - Mouse
-    - Horse
-- Every animal has following info:
-    - Age (1 month to 15 years - random)
-    - date of death
-    - Name
-    - favorite food (1 or more - random)
-=end

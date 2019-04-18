@@ -1,0 +1,43 @@
+<h1>Create new pet</h1>
+
+<% if @pet.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@pet.errors.count, "error") %> prohibited
+      this pet from being adopted:
+    </h2>
+    <ul>
+      <% @pet.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with url: user_pets_path, local: true do |form| %>
+
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :type %><br>
+    <%= form.select :type, %w(Dog Cat Mouse Horse) %>
+  </p>
+
+  <p>
+    <%= form.label :favorite_food %><br>
+    <%= form.select :favorite_food, %w(milk water bread meat carrot grass) %>
+  </p>
+
+  <p>
+    <%= form.label :age_in_months %><br>
+    <%= form.number_field :age_in_months %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>

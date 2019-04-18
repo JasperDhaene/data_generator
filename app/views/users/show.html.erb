@@ -20,34 +20,44 @@
   <%= @user.birth_date %>
 </p>
 
+<p>
+  <strong>
+    <%= link_to 'Oh nooo, this person died!', user_path(@user), method: :delete, data: { confirm: 'you sure they dead?!' } %>
+  </strong>
+</p>
+
 <h2>Pets</h2>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Age</th>
-    <th>Deceased</th>
-    <th>Favorite food</th>
-  </tr>
-
-  <% @user.pets.each do |pet| %>
+<% if !@user.pets.empty? %>
+  <table>
     <tr>
-      <td><%= pet.name %></td>
-      <td><%= pet.type %></td>
-      <% age_in_parts = ActiveSupport::Duration.build(pet.age_in_months.months.to_i).parts %>
-      <td><%= "#{age_in_parts[:years]} years, #{age_in_parts[:months]} months"  %></td>
-      <td><%= pet.date_of_death %></td>
-      <td><%= pet.favorite_food %></td>
-
-      <td><%= link_to 'Show', pet_path(pet) %></td>
-      <% if !pet.date_of_death %>
-      <td><%= link_to 'My pet died!', pet_path(pet), method: :put, data: { confirm: 'U sure he dead?' } %></td>
-      <% end %>
-
+      <th>Name</th>
+      <th>Type</th>
+      <th>Age</th>
+      <th>Deceased</th>
+      <th>Favorite food</th>
     </tr>
-  <% end %>
-</table>
+
+    <% @user.pets.each do |pet| %>
+      <tr>
+        <td><%= pet.name %></td>
+        <td><%= pet.type %></td>
+        <% age_in_parts = ActiveSupport::Duration.build(pet.age_in_months.months.to_i).parts %>
+        <td><%= "#{age_in_parts[:years]} years, #{age_in_parts[:months]} months"  %></td>
+        <td><%= pet.date_of_death %></td>
+        <td><%= pet.favorite_food %></td>
+
+        <td><%= link_to 'Show', pet_path(pet) %></td>
+        <% if !pet.date_of_death %>
+        <td><%= link_to 'My pet died!', pet_path(pet), method: :put, data: { confirm: 'U sure he dead?' } %></td>
+        <% end %>
+
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<%= link_to 'Create new pet', new_user_pet_path(@user.id) %>
 
 <h2>Fridge</h2>
 <% if @user.birth_date > (Date.today - 18.years) %>

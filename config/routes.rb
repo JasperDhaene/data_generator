@@ -3,12 +3,13 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :fridges, only: %i[new create]
+    resources :pets, only: %i[new create]
   end
   resources :fridges, only: %i[show edit update destroy] do
     resources :foods, only: %i[new create]
   end
   resources :foods, only: %i[show edit update destroy]
-  resources :pets
+  resources :pets, only: %i[show edit update destroy]
 
   root 'users#index'
 end
