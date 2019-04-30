@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount_ember_app :frontend, to: '/'
+
   constraints subdomain: 'api' do
     resources :users do
       resources :fridges, only: %i[new create]
@@ -31,4 +33,6 @@ Rails.application.routes.draw do
   resources :pets, only: %i[show edit update destroy]
 
   root 'users#index'
+
+  
 end

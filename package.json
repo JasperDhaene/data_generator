@@ -1,5 +1,7 @@
 {
   "name": "data_generator",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "ember-cli": "^3.9.0"
+  }
 }
