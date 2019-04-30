@@ -5,10 +5,12 @@ class UsersController < ApplicationController
     else
       @users = User.all
     end
+    render json: @users, status: :ok
   end
 
   def show
     @user = User.find(params[:id])
+    render json: @user, status: :ok
   end
 
   def new

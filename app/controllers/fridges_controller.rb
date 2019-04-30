@@ -3,8 +3,7 @@ require 'faker'
 class FridgesController < ApplicationController
   def show
     @fridge = Fridge.find(params[:id])
-    @user = User.find(@fridge.user.id)
-
+    render json: @fridge, status: :ok
   end
 
   def create
