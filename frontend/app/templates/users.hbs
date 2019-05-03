@@ -1,3 +1,29 @@
 <h2>These are my users!</h2>
 
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Birth date</th>
+      <th>Amount of pets</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model as |user|}}
+      <tr>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.birthDate}}</td>
+        <td>{{user.petsCount}}</td>
+        <td><button class="btn btn-large btn-primary" {{action 'show' this}}>Show</button></td>
+        <td><button class="btn btn-large btn-danger" {{action 'create' this}}>Create</button></td>
+        <td><button class="btn btn-large btn-danger" {{action 'delete' this}}>Delete</button></td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
 {{outlet}}

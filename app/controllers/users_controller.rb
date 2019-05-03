@@ -13,10 +13,6 @@ class UsersController < ApplicationController
     render json: @user, status: :ok
   end
 
-  def new
-    @user = User.new
-  end
-
   def edit
     @user = User.find(params[:id])
   end
@@ -32,13 +28,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-
-
-    if @user.save
-      redirect_to @user
+    user = User.new(user_params)
+    if user.save
+      render json: user, status: :created
     else
-      render 'new'
+      render json: { errors: user.errors }, status: :unprocessable_entity
     end
   end
 
@@ -51,6 +45,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(%i[first_name last_name email birth_date])
+    params.permit(%i[first_name last_name email birth_date])
   end
 end
