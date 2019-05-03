@@ -18,9 +18,7 @@
         <td>{{user.email}}</td>
         <td>{{user.birthDate}}</td>
         <td>{{user.petsCount}}</td>
-        <td><button class="btn btn-large btn-primary" {{action 'show' this}}>Show</button></td>
-        <td><button class="btn btn-large btn-danger" {{action 'create' this}}>Create</button></td>
-        <td><button class="btn btn-large btn-danger" {{action 'delete' this}}>Delete</button></td>
+        <td>{{#link-to 'users.show' user.id}}Show{{/link-to}}</td>
       </tr>
     {{/each}}
   </tbody>
