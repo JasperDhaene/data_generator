@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render json: @user, include: 'fridge', fields: { fridge: ['id', 'brand', 'last_technical_check'] }, status: :ok
+    render json: @user, include: ['fridge', 'pets'], status: :ok
   end
 
   def edit
@@ -19,11 +19,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-
+    
     if @user.update(user_params)
-      redirect_to users_path
-    else
-      render 'edit'
+      puts 'user successfully updated'
     end
   end
 
