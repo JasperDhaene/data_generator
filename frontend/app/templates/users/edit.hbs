@@ -1,22 +1,24 @@
 <h1>User</h1>
+
 <p>
   <strong>First name:</strong>
-  {{model.firstName}}
+  {{input type="text" value=model.firstName}}
 </p>
 
 <p>
     <strong>Last name:</strong>
-    {{model.lastName}}
+    {{input type="text" value=model.lastName}}
 </p>
 
 <p>
     <strong>Email:</strong>
-    {{model.email}}
+    {{input type="text" value=model.email}}
 </p>
 
 <p>
     <strong>Birth date:</strong>
-    {{model.birthDate}}
+    {{input type="text" value=model.birthDate}}
 </p>
+<button {{action 'saveUser' model}}>Save</button>
 
 {{#link-to 'users'}}Back to overview {{/link-to}}
