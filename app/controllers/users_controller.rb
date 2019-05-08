@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render json: @user, status: :ok
+    render json: @user, include: 'fridge', fields: { fridge: ['id', 'brand', 'last_technical_check'] }, status: :ok
   end
 
   def edit

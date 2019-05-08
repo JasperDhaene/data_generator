@@ -19,4 +19,14 @@
     {{model.birthDate}}
 </p>
 
-{{#link-to 'users'}}Back to overview {{/link-to}}
+<h2>Fridge</h2>
+<p>
+    <strong>Brand:</strong>
+    {{model.fridge.brand}}
+</p>
+<p>
+    <strong>Last technical check:</strong>
+    {{model.fridge.last_technical_check}}
+</p>
+
+{{#link-to 'users'}}Back to overview{{/link-to}}

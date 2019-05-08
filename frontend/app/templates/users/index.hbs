@@ -20,6 +20,8 @@
         <td>{{user.petsCount}}</td>
         <td>{{#link-to 'users.show' user.id}}Show{{/link-to}}</td>
         <td>{{#link-to 'users.edit' user.id}}Edit{{/link-to}}</td>
+        <button {{action "deleteRecord" user.id}}>Delete</button>
+
       </tr>
     {{/each}}
   </tbody>
