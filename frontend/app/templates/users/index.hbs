@@ -1,0 +1,28 @@
+<h2>These are my users!</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Birth date</th>
+      <th>Amount of pets</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model as |user|}}
+      <tr>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.birthDate}}</td>
+        <td>{{user.petsCount}}</td>
+        <td>{{#link-to 'users.show' user.id}}Show{{/link-to}}</td>
+        <td>{{#link-to 'users.edit' user.id}}Edit{{/link-to}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{#link-to 'users.new'}}Create new user!{{/link-to}}
